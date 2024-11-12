@@ -82,7 +82,7 @@ app.get('/api/invitados', (req, res) => {
       console.error('Error al obtener los invitados: ', error);
       return res.status(500).send('Error interno del servidor');
     }
-    res.status(200).json({ results });
+    res.status(200).json(results);
   });
 });
 
