@@ -82,7 +82,7 @@ app.get('/api/invitados', (req, res) => {
       console.error('Error al obtener los invitados: ', error);
       return res.status(500).send('Error interno del servidor');
     }
-    res.status(200).json({ data: results });
+    res.status(200).json({ results });
   });
 });
 
@@ -120,8 +120,7 @@ app.post('/api/invitado', (req, res) => {
       }
       console.log(`Se ha insertado un nuevo registro con código de invitación ${codigoInvitacion}`);
       res.status(201).json({
-        message: `Se ha insertado un nuevo registro con código de invitación ${codigoInvitacion}`,
-        codigoInvitacion
+        message: `Se ha insertado un nuevo registro con código de invitación ${codigoInvitacion}`
       });
     });
   });
