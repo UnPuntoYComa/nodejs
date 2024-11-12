@@ -13,22 +13,18 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // Configuración de la base de datos
-const db = mysql.createConnection({
+
+
+// Conectar a la base de datos
+const db = mysql.createPool({
   host: '65.109.88.87',
   user: 'guaterep_dieg_admin',
   password: 'ZXzavvY]Wo(l',
-  database: 'guaterep_bodascarlette'
+  database: 'guaterep_bodascarlette',
+  connectionLimit: 10, // Límite de conexiones en el pool
+  waitForConnections: true,
+  queueLimit: 0
 });
-
-// Conectar a la base de datos
-db.connect((err) => {
-  if (err) {
-    console.error('Error al conectar a la base de datos: ', err);
-    process.exit(1);
-  }
-  console.log('Conexión establecida con la base de datos MySQL');
-});
-
 // Reintentar conexión en caso de error
 db.on('error', (err) => {
   if (err.code === 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR') {
